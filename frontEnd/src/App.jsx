@@ -1,45 +1,23 @@
-import { useState } from 'react'
-import logo from './logo.svg'
+import {BrowserRouter, Link, Route, Routes} from 'react-router-dom';
+import HomeScreen from './screens/HomeScreen';
+import ProductScreen from './screens/ProductScreen';
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>React con tlf</p>
-        <p>
-          <button type="button" onClick={() => setCount((count) => count + 1)}>
-            count is: {count}
-          </button>
-        </p>
-        <p>
-          Edit <code>App.jsx</code> and save to test HMR updates.
-        </p>
-        <p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-          {' | '}
-          <a
-            className="App-link"
-            href="https://vitejs.dev/guide/features.html"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Vite Docs
-          </a>
-        </p>
+    <BrowserRouter>
+    <div>
+      <header>
+        <Link to="/"> Lara's </Link>
       </header>
+        <main>
+        <Routes>
+          <Route path="/product/:slug" element={<ProductScreen />} />
+          <Route path="/" element={<HomeScreen />} />
+        </Routes>
+        </main>
     </div>
-  )
-}
-
-export default App
+    </BrowserRouter>
+    );
+};
+export default App;
